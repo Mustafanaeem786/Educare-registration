@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The Educare Academy | Registration</title>
+<title>The Educare Academy | Online Registration</title>
 
 <style>
 
@@ -20,14 +20,14 @@ padding:0;
 body{
 font-family:Arial,sans-serif;
 background:
-radial-gradient(circle at top,#3a2a00 0%,#0a0a0a 45%,#000000 100%);
+radial-gradient(circle at top,#3a2a00 0%,#0a0a0a 45%,#000 100%);
 min-height:100vh;
 padding:20px 12px;
-color:#ffffff;
+color:#fff;
 }
 
 .container{
-max-width:620px;
+max-width:650px;
 margin:auto;
 background:#0d0d0d;
 border:1px solid #d4af37;
@@ -42,7 +42,7 @@ box-shadow:
 position:relative;
 text-align:center;
 padding:35px 18px 30px;
-background:linear-gradient(145deg,#000000,#171717,#050505);
+background:linear-gradient(145deg,#000,#171717,#050505);
 border-bottom:2px solid #d4af37;
 }
 
@@ -67,7 +67,7 @@ text-shadow:0 0 8px rgba(255,215,0,.35);
 }
 
 .header h2{
-color:#ffffff;
+color:#fff;
 font-size:16px;
 margin-top:7px;
 letter-spacing:2px;
@@ -78,7 +78,7 @@ display:inline-block;
 margin:18px 0 12px;
 padding:9px 25px;
 background:linear-gradient(135deg,#b8860b,#ffd700,#b8860b);
-color:#000000;
+color:#000;
 border-radius:30px;
 font-weight:900;
 font-size:16px;
@@ -86,7 +86,7 @@ box-shadow:0 0 15px rgba(255,215,0,.3);
 }
 
 .header p{
-color:#dddddd;
+color:#ddd;
 margin-top:6px;
 font-size:14px;
 }
@@ -125,7 +125,7 @@ textarea{
 width:100%;
 padding:13px 14px;
 background:#151515;
-color:#ffffff;
+color:#fff;
 border:1px solid #444;
 border-radius:9px;
 font-size:15px;
@@ -147,8 +147,18 @@ box-shadow:
 0 0 12px rgba(255,215,0,.15);
 }
 
+input[type="file"]{
+padding:10px;
+}
+
 textarea{
 resize:vertical;
+}
+
+.photo-note{
+font-size:12px;
+color:#999;
+margin-top:6px;
 }
 
 .courses{
@@ -179,39 +189,115 @@ background:rgba(255,215,0,.06);
 width:18px;
 height:18px;
 accent-color:#ffd700;
+flex-shrink:0;
 }
 
-.course label{
-margin:0;
-color:#eeeeee;
-font-weight:500;
-cursor:pointer;
+.course-info{
+flex:1;
+}
+
+.course-name{
+color:#eee;
+font-weight:600;
+font-size:15px;
+}
+
+.course-fee{
+color:#ffd700;
+font-size:13px;
+margin-top:4px;
+font-weight:bold;
+}
+
+.total-box{
+margin-top:18px;
+padding:16px;
+border:1px solid #d4af37;
+border-radius:12px;
+background:linear-gradient(
+145deg,
+rgba(212,175,55,.12),
+rgba(0,0,0,.4)
+);
+text-align:center;
+}
+
+.total-label{
+color:#ddd;
+font-size:14px;
+}
+
+.total-fee{
+color:#ffd700;
+font-size:25px;
+font-weight:900;
+margin-top:5px;
+}
+
+.learning-subtitle{
+color:#aaa;
+font-size:13px;
+margin-bottom:15px;
 }
 
 .study-mode{
 display:flex;
-gap:12px;
+gap:14px;
 margin-top:10px;
 }
 
-.study-mode label{
+.study-card{
 flex:1;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:8px;
-padding:12px;
-background:#151515;
-border:1px solid #444;
-border-radius:9px;
-margin:0;
-cursor:pointer;
-color:#eeeeee;
+position:relative;
 }
 
-.study-mode input{
-width:17px;
-accent-color:#ffd700;
+.study-card input{
+position:absolute;
+opacity:0;
+pointer-events:none;
+}
+
+.study-label{
+display:block;
+padding:18px 10px;
+background:linear-gradient(145deg,#171717,#0b0b0b);
+border:1px solid #444;
+border-radius:12px;
+text-align:center;
+cursor:pointer;
+transition:.3s;
+}
+
+.study-icon{
+font-size:28px;
+display:block;
+margin-bottom:7px;
+}
+
+.study-title{
+color:#fff;
+font-size:16px;
+font-weight:800;
+display:block;
+}
+
+.study-description{
+color:#999;
+font-size:11px;
+margin-top:5px;
+display:block;
+line-height:1.4;
+}
+
+.study-card input:checked + .study-label{
+border-color:#ffd700;
+box-shadow:
+0 0 12px rgba(255,215,0,.2);
+background:linear-gradient(
+145deg,
+rgba(212,175,55,.18),
+#0b0b0b
+);
 }
 
 .register-btn{
@@ -229,7 +315,7 @@ linear-gradient(
 #ffd700,
 #a67c00
 );
-color:#000000;
+color:#000;
 font-size:19px;
 font-weight:900;
 letter-spacing:1px;
@@ -387,24 +473,55 @@ id="city"
 placeholder="Enter your city">
 
 
+<!-- PHOTO -->
+
 <h2 class="section-title">
-📚 Select Course *
+📸 Student Photo
 </h2>
 
+<label for="photo">
+Upload Your Recent Photo
+</label>
+
+<input
+type="file"
+id="photo"
+accept="image/png,image/jpeg,image/jpg">
+
+<p class="photo-note">
+JPG, JPEG or PNG format recommended.
+</p>
+
+
+<!-- COURSES -->
+
+<h2 class="section-title">
+📚 Choose Your Course
+</h2>
 
 <div class="courses">
 
+
 <div class="course">
 
 <input
 type="checkbox"
 name="course"
-value="Digital Marketing"
-id="digital">
+value="Office Management & Professional IT Skills"
+data-fee="10000"
+id="office">
 
-<label for="digital">
-Digital Marketing
-</label>
+<div class="course-info">
+
+<div class="course-name">
+Office Management & Professional IT Skills
+</div>
+
+<div class="course-fee">
+Rs. 10,000
+</div>
+
+</div>
 
 </div>
 
@@ -414,12 +531,21 @@ Digital Marketing
 <input
 type="checkbox"
 name="course"
-value="AI & Office Management"
+value="AI Animation & Professional Video Editing"
+data-fee="10000"
 id="ai">
 
-<label for="ai">
-AI & Office Management
-</label>
+<div class="course-info">
+
+<div class="course-name">
+AI Animation & Professional Video Editing
+</div>
+
+<div class="course-fee">
+Rs. 10,000
+</div>
+
+</div>
 
 </div>
 
@@ -429,12 +555,21 @@ AI & Office Management
 <input
 type="checkbox"
 name="course"
-value="Web Development"
-id="web">
+value="Digital Marketing & SEO"
+data-fee="30000"
+id="digital">
 
-<label for="web">
-Web Development
-</label>
+<div class="course-info">
+
+<div class="course-name">
+Digital Marketing & SEO
+</div>
+
+<div class="course-fee">
+Rs. 30,000
+</div>
+
+</div>
 
 </div>
 
@@ -444,27 +579,21 @@ Web Development
 <input
 type="checkbox"
 name="course"
-value="Forex & Crypto Trading"
-id="forex">
-
-<label for="forex">
-Forex & Crypto Trading
-</label>
-
-</div>
-
-
-<div class="course">
-
-<input
-type="checkbox"
-name="course"
-value="Graphic Designing"
+value="Professional Graphic Designing"
+data-fee="30000"
 id="graphic">
 
-<label for="graphic">
-Graphic Designing
-</label>
+<div class="course-info">
+
+<div class="course-name">
+Professional Graphic Designing
+</div>
+
+<div class="course-fee">
+Rs. 30,000
+</div>
+
+</div>
 
 </div>
 
@@ -474,66 +603,216 @@ Graphic Designing
 <input
 type="checkbox"
 name="course"
-value="Spoken English"
-id="english">
-
-<label for="english">
-Spoken English
-</label>
-
-</div>
-
-
-<div class="course">
-
-<input
-type="checkbox"
-name="course"
-value="Video Editing"
+value="Professional Video Editing"
+data-fee="30000"
 id="video">
 
-<label for="video">
-Video Editing
-</label>
+<div class="course-info">
 
+<div class="course-name">
+Professional Video Editing
+</div>
+
+<div class="course-fee">
+Rs. 30,000
 </div>
 
 </div>
 
+</div>
+
+
+<div class="course">
+
+<input
+type="checkbox"
+name="course"
+value="Web Development & Design"
+data-fee="45000"
+id="web">
+
+<div class="course-info">
+
+<div class="course-name">
+Web Development & Design
+</div>
+
+<div class="course-fee">
+Rs. 45,000
+</div>
+
+</div>
+
+</div>
+
+
+<div class="course">
+
+<input
+type="checkbox"
+name="course"
+value="Spoken English & Communication Skills"
+data-fee="15000"
+id="english">
+
+<div class="course-info">
+
+<div class="course-name">
+Spoken English & Communication Skills
+</div>
+
+<div class="course-fee">
+Rs. 15,000
+</div>
+
+</div>
+
+</div>
+
+
+<div class="course">
+
+<input
+type="checkbox"
+name="course"
+value="Amazon E-Commerce & FBA"
+data-fee="30000"
+id="amazon">
+
+<div class="course-info">
+
+<div class="course-name">
+Amazon E-Commerce & FBA
+</div>
+
+<div class="course-fee">
+Rs. 30,000
+</div>
+
+</div>
+
+</div>
+
+
+<div class="course">
+
+<input
+type="checkbox"
+name="course"
+value="eBay E-Commerce & Online Selling"
+data-fee="30000"
+id="ebay">
+
+<div class="course-info">
+
+<div class="course-name">
+eBay E-Commerce & Online Selling
+</div>
+
+<div class="course-fee">
+Rs. 30,000
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- TOTAL FEE -->
+
+<div class="total-box">
+
+<div class="total-label">
+💰 TOTAL COURSE FEE
+</div>
+
+<div class="total-fee" id="totalFee">
+Rs. 0
+</div>
+
+</div>
+
+
+<!-- LEARNING EXPERIENCE -->
 
 <h2 class="section-title">
-💻 Study Mode *
+🎓 Choose Your Learning Experience
 </h2>
+
+<p class="learning-subtitle">
+Select the learning option that suits you best.
+</p>
 
 
 <div class="study-mode">
 
-<label>
+
+<div class="study-card">
 
 <input
 type="radio"
 name="mode"
-value="Online"
+value="Online Classes"
+id="online"
 required>
 
-Online
+<label
+for="online"
+class="study-label">
 
-</label>
+<span class="study-icon">
+🌐
+</span>
 
+<span class="study-title">
+ONLINE CLASSES
+</span>
 
-<label>
-
-<input
-type="radio"
-name="mode"
-value="Home Tuition">
-
-Home Tuition
+<span class="study-description">
+Learn Anytime • Learn Anywhere
+</span>
 
 </label>
 
 </div>
 
+
+<div class="study-card">
+
+<input
+type="radio"
+name="mode"
+value="Home Tuition"
+id="home">
+
+<label
+for="home"
+class="study-label">
+
+<span class="study-icon">
+🏠
+</span>
+
+<span class="study-title">
+HOME TUITION
+</span>
+
+<span class="study-description">
+Personal Attention • Personalized Learning
+</span>
+
+</label>
+
+</div>
+
+
+</div>
+
+
+<!-- QUALIFICATION -->
 
 <label for="qualification">
 🎓 Qualification
@@ -560,6 +839,8 @@ Select Qualification
 </select>
 
 
+<!-- MESSAGE -->
+
 <label for="message">
 📝 Additional Message
 </label>
@@ -570,11 +851,13 @@ rows="4"
 placeholder="Write your message..."></textarea>
 
 
+<!-- BUTTON -->
+
 <button
 type="submit"
 class="register-btn">
 
-📲 REGISTER NOW
+📲 SUBMIT REGISTRATION
 
 </button>
 
@@ -594,7 +877,7 @@ THE EDUCARE ACADEMY
 </p>
 
 <p>
-Online & Home Tuition Available
+Online Classes • Home Tuition
 </p>
 
 <p>
@@ -612,13 +895,65 @@ Learn Skills • Build Your Career
 </div>
 
 
-<!-- JAVASCRIPT -->
-
 <script>
+
+
+/* =========================
+   COURSE FEE CALCULATOR
+========================= */
+
+const courseCheckboxes =
+document.querySelectorAll(
+'input[name="course"]'
+);
+
+const totalFee =
+document.getElementById("totalFee");
+
+
+function calculateTotal(){
+
+let total = 0;
+
+courseCheckboxes.forEach(
+function(course){
+
+if(course.checked){
+
+total +=
+parseInt(course.dataset.fee);
+
+}
+
+});
+
+totalFee.textContent =
+"Rs. " +
+total.toLocaleString("en-PK");
+
+}
+
+
+courseCheckboxes.forEach(
+function(course){
+
+course.addEventListener(
+"change",
+calculateTotal
+);
+
+});
+
+
+/* =========================
+   FORM SUBMISSION
+========================= */
 
 document
 .getElementById("registrationForm")
-.addEventListener("submit", function(event) {
+.addEventListener(
+"submit",
+function(event){
 
 event.preventDefault();
 
@@ -626,44 +961,98 @@ event.preventDefault();
 /* STUDENT DATA */
 
 let name =
-document.getElementById("name").value.trim();
+document
+.getElementById("name")
+.value
+.trim();
+
 
 let father =
-document.getElementById("father").value.trim();
+document
+.getElementById("father")
+.value
+.trim();
+
 
 let phone =
-document.getElementById("phone").value.trim();
+document
+.getElementById("phone")
+.value
+.trim();
+
 
 let email =
-document.getElementById("email").value.trim();
+document
+.getElementById("email")
+.value
+.trim();
+
 
 let city =
-document.getElementById("city").value.trim();
+document
+.getElementById("city")
+.value
+.trim();
+
+
+/* PHOTO */
+
+let photoInput =
+document.getElementById("photo");
+
+let photoName =
+"Not uploaded";
+
+
+if(
+photoInput.files &&
+photoInput.files.length > 0
+){
+
+photoName =
+photoInput.files[0].name;
+
+}
 
 
 /* COURSES */
 
-let courses = [];
+let selectedCourses = [];
+
+let total = 0;
+
 
 document
-.querySelectorAll('input[name="course"]:checked')
-.forEach(function(course){
+.querySelectorAll(
+'input[name="course"]:checked'
+)
+.forEach(
+function(course){
 
-courses.push(course.value);
+selectedCourses.push(
+course.value
+);
+
+total +=
+parseInt(course.dataset.fee);
 
 });
 
 
-if(courses.length === 0){
+if(
+selectedCourses.length === 0
+){
 
-alert("Please select at least one course.");
+alert(
+"Please select at least one course."
+);
 
 return;
 
 }
 
 
-/* STUDY MODE */
+/* LEARNING MODE */
 
 let selectedMode =
 document.querySelector(
@@ -673,7 +1062,9 @@ document.querySelector(
 
 if(!selectedMode){
 
-alert("Please select study mode.");
+alert(
+"Please select your learning experience."
+);
 
 return;
 
@@ -691,6 +1082,7 @@ document
 .getElementById("qualification")
 .value;
 
+
 let message =
 document
 .getElementById("message")
@@ -698,18 +1090,9 @@ document
 .trim();
 
 
-/* REGISTRATION NUMBER */
-
-/*
-First registration:
-EDU-SKP-2026-001
-
-Second:
-EDU-SKP-2026-002
-
-Third:
-EDU-SKP-2026-003
-*/
+/* =========================
+   REGISTRATION ID
+========================= */
 
 let lastNumber =
 parseInt(
@@ -717,6 +1100,7 @@ localStorage.getItem(
 "educareRegistrationNumber"
 ) || "0"
 );
+
 
 let registrationNumber =
 lastNumber + 1;
@@ -730,27 +1114,37 @@ registrationNumber
 
 let registrationID =
 "EDU-SKP-2026-" +
-String(registrationNumber).padStart(3,"0");
+String(
+registrationNumber
+)
+.padStart(3,"0");
 
 
-/* DATE */
+/* DATE & TIME */
 
 let now =
 new Date();
 
 
 let registrationDate =
-now.toLocaleDateString("en-GB");
+now.toLocaleDateString(
+"en-GB"
+);
 
 
 let registrationTime =
-now.toLocaleTimeString("en-US",{
+now.toLocaleTimeString(
+"en-US",
+{
 hour:"2-digit",
 minute:"2-digit"
-});
+}
+);
 
 
-/* WHATSAPP MESSAGE */
+/* =========================
+   WHATSAPP MESSAGE
+========================= */
 
 let text =
 
@@ -790,17 +1184,25 @@ phone +
 "\n🏙️ City: " +
 (city || "Not provided") +
 
+"\n📸 Photo: " +
+photoName +
+
 "\n\n📚 *COURSE INFORMATION*" +
 
 "\n━━━━━━━━━━━━━━━━━━" +
 
-"\n📚 Course: " +
-courses.join(", ") +
+"\n📚 Selected Course(s): " +
+selectedCourses.join(", ") +
 
-"\n💻 Study Mode: " +
+"\n💰 Total Course Fee: Rs. " +
+total.toLocaleString("en-PK") +
+
+"\n\n🎓 *LEARNING EXPERIENCE*" +
+
+"\n" +
 mode +
 
-"\n🎓 Qualification: " +
+"\n\n🎓 Qualification: " +
 (qualification || "Not provided") +
 
 "\n\n📝 *ADDITIONAL MESSAGE*" +
@@ -815,7 +1217,9 @@ mode +
 "\n✨ Learn Skills • Build Your Career";
 
 
-/* WHATSAPP NUMBER */
+/* =========================
+   WHATSAPP
+========================= */
 
 let whatsappNumber =
 "923044144039";
@@ -828,12 +1232,14 @@ whatsappNumber +
 encodeURIComponent(text);
 
 
-/* SUCCESS MESSAGE */
+/* SUCCESS */
 
 alert(
-"Registration successful!\n\n" +
-"Your Registration ID is:\n" +
+"Registration Submitted Successfully!\n\n" +
+"Registration ID:\n" +
 registrationID +
+"\n\nTotal Fee: Rs. " +
+total.toLocaleString("en-PK") +
 "\n\nWhatsApp will open next."
 );
 
